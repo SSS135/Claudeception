@@ -6,17 +6,54 @@ This skill fixes that. When Claude Code discovers something non-obvious (a debug
 
 ## Installation
 
-### User-level (recommended)
+### Step 1: Clone the skill
+
+**User-level (recommended)**
 
 ```bash
 git clone https://github.com/blader/claude-code-continuous-learning-skill.git ~/.claude/skills/continuous-learning
 ```
 
-### Project-level
+**Project-level**
 
 ```bash
 git clone https://github.com/blader/claude-code-continuous-learning-skill.git .claude/skills/continuous-learning
 ```
+
+### Step 2: Set up the activation hook (recommended)
+
+The skill can activate via semantic matching, but a hook ensures it evaluates every session for extractable knowledge.
+
+1. Create the hooks directory and copy the script:
+
+```bash
+mkdir -p ~/.claude/hooks
+cp ~/.claude/skills/continuous-learning/scripts/continuous-learning-activator.sh ~/.claude/hooks/
+chmod +x ~/.claude/hooks/continuous-learning-activator.sh
+```
+
+2. Add the hook to your Claude settings (`~/.claude/settings.json`):
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/continuous-learning-activator.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+If you already have a `settings.json`, merge the `hooks` configuration into it.
+
+The hook injects a reminder on every prompt that tells Claude to evaluate whether the current task produced extractable knowledge. This achieves higher activation rates than relying on semantic description matching alone.
 
 ## Usage
 
