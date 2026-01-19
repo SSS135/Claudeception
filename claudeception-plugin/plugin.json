@@ -1,0 +1,13 @@
+{
+  "name": "claudeception",
+  "description": "Meta-skill for extracting reusable knowledge from work sessions into new Claude Code skills",
+  "version": "3.0.0",
+  "author": {
+    "name": "Claude Code"
+  },
+  "license": "MIT",
+  "skills": ["./skills"],
+  "hooks": {
+    "UserPromptSubmit": ["./hooks/activator.js"]
+  }
+}

@@ -6,54 +6,31 @@ This skill fixes that. When Claude Code discovers something non-obvious (a debug
 
 ## Installation
 
-### Step 1: Clone the skill
-
-**User-level (recommended)**
+### Option 1: Plugin installation (recommended)
 
 ```bash
-git clone https://github.com/blader/Claudeception.git ~/.claude/skills/claudeception
+claude plugins add https://github.com/blader/Claudeception
 ```
 
-**Project-level**
+This installs both the skill and activation hook automatically.
+
+### Option 2: Manual installation
+
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/blader/Claudeception.git .claude/skills/claudeception
+git clone https://github.com/blader/Claudeception.git ~/.claude/plugins/claudeception
 ```
 
-### Step 2: Set up the activation hook (recommended)
-
-The skill can activate via semantic matching, but a hook ensures it evaluates every session for extractable knowledge.
-
-1. Create the hooks directory and copy the script:
-
-```bash
-mkdir -p ~/.claude/hooks
-cp ~/.claude/skills/claudeception/scripts/claudeception-activator.sh ~/.claude/hooks/
-chmod +x ~/.claude/hooks/claudeception-activator.sh
-```
-
-2. Add the hook to your Claude settings (`~/.claude/settings.json`):
+2. Register the plugin in `~/.claude/settings.json`:
 
 ```json
 {
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/claudeception-activator.sh"
-          }
-        ]
-      }
-    ]
-  }
+  "plugins": [
+    "~/.claude/plugins/claudeception/claudeception-plugin"
+  ]
 }
 ```
-
-If you already have a `settings.json`, merge the `hooks` configuration into it.
-
-The hook injects a reminder on every prompt that tells Claude to evaluate whether the current task produced extractable knowledge. This achieves higher activation rates than relying on semantic description matching alone.
 
 ## Usage
 
@@ -110,8 +87,8 @@ Extracted skills are markdown files with YAML frontmatter:
 ---
 name: prisma-connection-pool-exhaustion
 description: |
-  Fix for PrismaClientKnownRequestError: Too many database connections 
-  in serverless environments (Vercel, AWS Lambda). Use when connection 
+  Fix for PrismaClientKnownRequestError: Too many database connections
+  in serverless environments (Vercel, AWS Lambda). Use when connection
   count errors appear after ~5 concurrent requests.
 author: Claude Code
 version: 1.0.0
@@ -133,7 +110,7 @@ date: 2024-01-15
 [How to confirm it worked]
 ```
 
-See `resources/skill-template.md` for the full template.
+See `claudeception-plugin/resources/skill-template.md` for the full template.
 
 ## Quality Gates
 
@@ -141,11 +118,29 @@ The skill is picky about what it extracts. If something is just a documentation 
 
 ## Examples
 
-See `examples/` for sample skills:
+See `claudeception-plugin/examples/` for sample skills:
 
 - `nextjs-server-side-error-debugging/`: errors that don't show in browser console
 - `prisma-connection-pool-exhaustion/`: the "too many connections" serverless problem
 - `typescript-circular-dependency/`: detecting and fixing import cycles
+
+## Plugin Structure
+
+```
+claudeception/
+├── .claude-plugin/
+│   └── marketplace.json      # Marketplace metadata
+├── claudeception-plugin/
+│   ├── plugin.json           # Plugin configuration
+│   ├── skills/
+│   │   └── SKILL.md          # The claudeception skill
+│   ├── hooks/
+│   │   └── activator.js      # Auto-activation hook
+│   ├── examples/             # Example extracted skills
+│   └── resources/            # Templates and references
+├── README.md
+└── LICENSE
+```
 
 ## Contributing
 

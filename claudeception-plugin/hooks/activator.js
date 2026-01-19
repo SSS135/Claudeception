@@ -1,15 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env node
 
-# Claudeception Auto-Activation Hook
-# This hook ensures the claudeception skill evaluates every interaction
-# for extractable knowledge worth preserving.
-#
-# Installation:
-#   1. Copy this script to ~/.claude/hooks/
-#   2. Make it executable: chmod +x ~/.claude/hooks/claudeception-activator.sh
-#   3. Add to ~/.claude/settings.json (see README for details)
+/**
+ * Claudeception Auto-Activation Hook
+ *
+ * This hook ensures the claudeception skill evaluates every interaction
+ * for extractable knowledge worth preserving.
+ */
 
-cat << 'EOF'
+const message = `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🧠 MANDATORY SKILL EVALUATION REQUIRED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -36,4 +34,6 @@ The claudeception skill will decide whether to actually create a new
 skill based on its quality criteria.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
+`;
+
+console.log(message);
