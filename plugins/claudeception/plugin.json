@@ -6,18 +6,5 @@
     "name": "SSS135"
   },
   "license": "MIT",
-  "skills": ["./skills"],
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/scripts/activator.js"
-          }
-        ]
-      }
-    ]
-  }
+  "skills": ["./skills"]
 }
