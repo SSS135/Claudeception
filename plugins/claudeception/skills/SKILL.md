@@ -7,7 +7,7 @@ description: |
   non-obvious debugging, workarounds, or trial-and-error discovery. Creates new Claude Code
   skills when valuable, reusable knowledge is identified.
 author: Claude Code
-version: 3.0.0
+version: 3.0.1
 allowed-tools:
   - Read
   - Write

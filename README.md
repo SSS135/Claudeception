@@ -4,30 +4,36 @@ Every time you use an AI coding agent, it starts from zero. You spend an hour de
 
 This skill fixes that. When Claude Code discovers something non-obvious (a debugging technique, a workaround, some project-specific pattern), it saves that knowledge as a new skill. Next time a similar problem comes up, the skill gets loaded automatically.
 
+> This is a fork of [blader/Claudeception](https://github.com/blader/Claudeception) refactored for Claude Marketplace installation.
+
 ## Installation
 
-### Option 1: Plugin installation (recommended)
+### Option 1: Marketplace (recommended)
 
-```bash
-claude plugins add https://github.com/SSS135/Claudeception
+1. Add the marketplace:
+```
+/plugin marketplace add SSS135/Claudeception
 ```
 
-This installs both the skill and activation hook automatically.
+2. Install the plugin:
+```
+/plugin install claudeception@SSS135/Claudeception
+```
+
+Or use the interactive UI with `/plugin`.
 
 ### Option 2: Manual installation
 
 1. Clone the repository:
-
 ```bash
 git clone https://github.com/SSS135/Claudeception.git ~/.claude/plugins/claudeception
 ```
 
 2. Register the plugin in `~/.claude/settings.json`:
-
 ```json
 {
   "plugins": [
-    "~/.claude/plugins/claudeception/claudeception-plugin"
+    "~/.claude/plugins/claudeception/plugins/claudeception"
   ]
 }
 ```
@@ -110,7 +116,7 @@ date: 2024-01-15
 [How to confirm it worked]
 ```
 
-See `claudeception-plugin/resources/skill-template.md` for the full template.
+See `plugins/claudeception/resources/skill-template.md` for the full template.
 
 ## Quality Gates
 
@@ -118,7 +124,7 @@ The skill is picky about what it extracts. If something is just a documentation 
 
 ## Examples
 
-See `claudeception-plugin/examples/` for sample skills:
+See `plugins/claudeception/examples/` for sample skills:
 
 - `nextjs-server-side-error-debugging/`: errors that don't show in browser console
 - `prisma-connection-pool-exhaustion/`: the "too many connections" serverless problem
@@ -130,12 +136,14 @@ See `claudeception-plugin/examples/` for sample skills:
 claudeception/
 ├── .claude-plugin/
 │   └── marketplace.json      # Marketplace metadata
-├── claudeception-plugin/
+├── plugins/claudeception/
 │   ├── plugin.json           # Plugin configuration
 │   ├── skills/
 │   │   └── SKILL.md          # The claudeception skill
 │   ├── hooks/
-│   │   └── activator.js      # Auto-activation hook
+│   │   └── hooks.json        # Hook configuration
+│   ├── scripts/
+│   │   └── activator.js      # Auto-activation script
 │   ├── examples/             # Example extracted skills
 │   └── resources/            # Templates and references
 ├── README.md
