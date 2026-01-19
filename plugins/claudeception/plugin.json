@@ -6,5 +6,6 @@
     "name": "SSS135"
   },
   "license": "MIT",
-  "skills": ["./skills"]
+  "skills": ["./skills"],
+  "commands": ["./commands"]
 }

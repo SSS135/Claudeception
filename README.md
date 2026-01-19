@@ -54,7 +54,7 @@ The skill activates automatically when Claude Code:
 Trigger a learning retrospective:
 
 ```
-/claudeception
+/claudeception:review
 ```
 
 Or explicitly request skill extraction:
