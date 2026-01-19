@@ -1,19 +1,17 @@
 {
-  "name": "claudeception",
-  "displayName": "Claudeception",
-  "description": "Meta-skill for extracting reusable knowledge from work sessions into new Claude Code skills. Enables continuous learning and autonomous improvement.",
-  "version": "3.0.0",
-  "author": {
-    "name": "Claude Code"
+  "name": "claudeception-marketplace",
+  "owner": {
+    "name": "SSS135"
   },
-  "repository": "https://github.com/SSS135/Claudeception",
-  "license": "MIT",
-  "keywords": [
-    "skills",
-    "learning",
-    "knowledge-extraction",
-    "meta-skill",
-    "automation"
-  ],
-  "plugins": ["./claudeception-plugin"]
+  "metadata": {
+    "description": "Meta-skill for extracting reusable knowledge from work sessions into new Claude Code skills",
+    "version": "3.0.0"
+  },
+  "plugins": [
+    {
+      "name": "claudeception",
+      "source": "./plugins/claudeception",
+      "description": "Enables continuous learning and autonomous improvement by extracting reusable knowledge from work sessions into new Claude Code skills."
+    }
+  ]
 }
