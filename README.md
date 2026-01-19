@@ -9,7 +9,7 @@ This skill fixes that. When Claude Code discovers something non-obvious (a debug
 ### Option 1: Plugin installation (recommended)
 
 ```bash
-claude plugins add https://github.com/blader/Claudeception
+claude plugins add https://github.com/SSS135/Claudeception
 ```
 
 This installs both the skill and activation hook automatically.
@@ -19,7 +19,7 @@ This installs both the skill and activation hook automatically.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/blader/Claudeception.git ~/.claude/plugins/claudeception
+git clone https://github.com/SSS135/Claudeception.git ~/.claude/plugins/claudeception
 ```
 
 2. Register the plugin in `~/.claude/settings.json`:
